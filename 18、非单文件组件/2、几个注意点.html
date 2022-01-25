@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>模版</title>
+        <!--引入Vue-->
+        <script type="text/javascript" src="../js/vue.js"></script>
+    </head>
+    <body>
+        <!--准备好一个容器-->
+        <div id="root">
+            <h1>{{msg}}</h1>
+            <school></school>
+            <school/>
+        </div>   
+    </body>
+
+
+    
+    <script type="text/javascript">
+        Vue.config.productionTip=false//阻止vue在启动时生成生产提示
+
+        const school=Vue.extend({
+            name:'atguigu',
+            template:`
+                <div>
+                    <h2>学校名称：{{name}}</h2>
+                    <h2>学校地址：{{address}}</h2>
+                </div>    
+            `,
+            data:function(){
+                return{
+                    name:'尚硅谷',
+                    address:'北京昌平'
+                }
+            }
+        })
+
+        new Vue({
+            el:'#root',
+            data:{
+                msg:'欢迎学习Vue'
+            },
+            components:{
+                school:school
+            }
+        })
+    </script>
+
+</html>

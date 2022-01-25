@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>列表的过滤</title>
+        <!--引入Vue-->
+        <script type="text/javascript" src="../js/vue.js"></script>
+    </head>
+    <body>
+        <!--准备好一个容器-->
+        <div id="root">
+            <h2>人员列表</h2>
+            <input type="text" placeholder="请输入名字" v-model="keyWord">
+            <ul>
+                <li v-for="p in filPersons" :key="p.id">
+                    {{p.name}}-{{p.age}}-{{p.sex}}
+                </li>
+
+            </ul>
+
+           
+        </div>   
+    </body>
+
+
+    
+    <script type="text/javascript">
+        Vue.config.productionTip=false//阻止vue在启动时生成生产提示
+
+        //用watch实现
+        //#region
+        /*new Vue({
+            el:'#root',
+            data:{
+                keyWord:'',
+                persons:[
+                    {id:'001',name:'马冬梅',age:18,sex:'女'},
+                    {id:'002',name:'周冬雨',age:19,sex:'女'},
+                    {id:'003',name:'周杰伦',age:20,sex:'男'},
+                    {id:'004',name:'温兆伦',age:21,sex:'男'}
+                ],
+                filPersons:[]
+            },
+            watch:{
+                keyWord:{
+                    immediate:true,
+                    handler(val){
+                        this.filPersons=this.persons.filter((p)=>{
+                        return p.name.indexOf(val)!==-1 //index方法可以检索一个字符串是否包含该内容，不包含返回-1，包含则返回第一次出现的索引
+                    })
+                    }
+                }
+            }
+        })*/
+        //#endregion
+
+        //用computed实现
+        new Vue({
+            el:'#root',
+            data:{
+                keyWord:'',
+                persons:[
+                    {id:'001',name:'马冬梅',age:18,sex:'女'},
+                    {id:'002',name:'周冬雨',age:19,sex:'女'},
+                    {id:'003',name:'周杰伦',age:20,sex:'男'},
+                    {id:'004',name:'温兆伦',age:21,sex:'男'}
+                ]
+            },
+            computed:{
+                filPersons:{
+                    get(){
+                        return this.persons.filter((p)=>{
+                            return p.name.indexOf(this.keyWord) !==-1
+                        })
+                    }
+                }
+            }
+        })
+    </script>
+
+</html>

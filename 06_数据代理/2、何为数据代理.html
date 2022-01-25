@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>何为数据代理</title>
+        <!--引入Vue-->
+        <script type="text/javascript" src="../js/vue.js"></script>
+    </head>
+    <body>
+        <!--准备好一个容器-->
+        <div id="root">
+            
+        </div>
+        <script type="text/javascript">
+            //准备两个对象
+            let obj={x:100}
+            let obj2={y:200}
+
+            Object.defineProperty(obj2,'x',{
+                get(){
+                    return obj.x
+                },
+                set(value){
+                    obj.x=value
+                }
+            })
+        </script>   
+    </body>
+
+
+    
+    <script type="text/javascript">
+        Vue.config.productionTip=false//阻止vue在启动时生成生产提示
+    </script>
+
+</html>
